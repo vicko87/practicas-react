@@ -1,3 +1,3 @@
 
 
-export * from './pages/LogiPage'
+export * from './pages/LoginPage'
