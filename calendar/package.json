@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
+    "npm": "^11.4.2",
     "react": "^19.0.0",
+    "react-big-calendar": "^1.19.4",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.30.1"
   },
