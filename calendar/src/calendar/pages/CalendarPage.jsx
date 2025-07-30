@@ -7,24 +7,15 @@ import { getMessagesES, localizer } from '../../helpers';
 import { CalendarEvent } from '../components/CalendarEvent';
 import { CalendarModal } from '../components/CalendarModal';
 import { useUiStore } from '../../hooks/useUiStore';
+import { useCalendarStore } from '../../hooks/useCalendarStore';
 
 
 
-const events = [{
-  title: 'Cumpleaños del Jefe',
-  notes: 'Hay que comprar el pastel',
-  start: new Date(),
-  end: addHours(new Date(), 2),
-  bgColor: '#fafafa',
-  user: {
-    _id: '123',
-    name: 'Victoria'
-  }
-}]
 
 export const CalendarPage = () => {
 
   const {OpenDateModal} = useUiStore();
+  const {events, setActiveEvent} = useCalendarStore();
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
 
   const eventStyleGetter = (event, start, end, isSelected ) => {
@@ -48,7 +39,8 @@ export const CalendarPage = () => {
   }
 
   const onSelect = (event)  => {
-    console.log({click: event})
+    //console.log({click: event})
+    setActiveEvent(event)
     }
 
     const onViewChanged = (event)  => {
