@@ -1,4 +1,4 @@
-import { addHours, differenceInSeconds } from 'date-fns';
+import { addHours, differenceInSeconds, set } from 'date-fns';
 import { useEffect, useMemo, useState } from 'react';
 
 import Modal from 'react-modal'
@@ -33,7 +33,7 @@ const customStyles = {
 export const CalendarModal = () => {
 
   const {isDateModalOpen, closeDateModal } = useUiStore()
-  const {activeEvent} = useCalendarStore();
+  const {activeEvent, startSavingEvent} = useCalendarStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -81,7 +81,7 @@ useEffect(() => {
     }
 
 
-   const onSubmit =  (event) => {
+   const onSubmit = async (event) => {
          event.preventDefault();
          setFormSubmitted(true)
 
@@ -95,7 +95,11 @@ useEffect(() => {
       
       if (formValues.title.length <= 0 ) return;
 
-      console.log(formValues)
+      console.log(formValues);
+
+    await  startSavingEvent(formValues);
+      closeDateModal();
+      setFormSubmitted(false);
    }
 
   return (
